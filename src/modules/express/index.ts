@@ -1,6 +1,8 @@
 import express from "express";
 
-import { userRouter } from "@/routes/index";
+import { connectToDataBase } from "@/database";
+
+import { userRouter } from "@/routes";
 
 const app = express();
 const port = 4000;
@@ -11,4 +13,10 @@ app.use(express.json());
 // routes
 app.use(userRouter);
 
-app.listen(port, () => console.log(`Rodando com Express na porta ${port}!`));
+export function startApp() {
+  app.listen(port, async () => {
+    console.log(`Rodando com Express na porta ${port}!`);
+
+    await connectToDataBase();
+  });
+}

@@ -1,1 +1,5 @@
-require("./src/modules/express/index");
+import "dotenv/config";
+
+import { startApp } from "@/modules";
+
+startApp();
